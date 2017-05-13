@@ -46,8 +46,10 @@ std::string Resources::GetPath(std::string folder, std::string file) {
 }
 
 void Resources::EnsureFolderExists(std::string path) {
-	if (!PathFileExists(path.c_str())) {
-		CreateDirectory(path.c_str(), NULL);
+	char folder_path[300];
+	sprintf(folder_path, "%s\\%s", GetSettingsFolderPath().c_str(), path.c_str());
+	if (!PathFileExists(folder_path)) {
+		CreateDirectory(folder_path, NULL);
 	}
 }
 
